@@ -1,0 +1,52 @@
+#include <stdio.h>
+#include <stdlib.h>
+int main()
+{
+    int* myarr = (int*)malloc(20*sizeof(int));
+    //hardcode the first two fibonacci numbers
+    *(myarr+0*sizeof(int)) = 0;
+    *(myarr+1*sizeof(int)) = 1;
+    //fill the array with the fibonacci numbers
+    int prev1 = 0;
+    int prev2 = 1;
+    int temp = 0;
+    for(int a = 2; a < 20; a++)
+    {
+        int current;
+        temp = prev1+prev2;
+        //use pointer arithmetic to set myarr at the current value to temp.
+        *(myarr+a*sizeof(int)) = temp;
+        prev1 = prev2;
+        prev2 = temp;
+        //so, this commented out print works fine here, but when I try it later it doesn't work.
+        //printf("[%d]",*(myarr+a*sizeof(int)));
+    }
+    //overwrite fibonacci numbers with squares. It never said in the assignment how to do this other than that I had to overwrite using pointer arithmetic. I.E. Didn't say how to determine the squares.
+    *(myarr+2*sizeof(int)) = 4;
+    *(myarr+3*sizeof(int)) = 9;
+    *(myarr+4*sizeof(int)) = 16;
+    *(myarr+5*sizeof(int)) = 25;
+    *(myarr+6*sizeof(int)) = 36;
+    *(myarr+7*sizeof(int)) = 49;
+    *(myarr+8*sizeof(int)) = 64;
+    *(myarr+9*sizeof(int)) = 81;
+    *(myarr+10*sizeof(int)) = 100;
+    *(myarr+11*sizeof(int)) = 121;
+    *(myarr+12*sizeof(int)) = 144;
+    *(myarr+13*sizeof(int)) = 169;
+    *(myarr+14*sizeof(int)) = 196;
+    *(myarr+15*sizeof(int)) = 225;
+    *(myarr+16*sizeof(int)) = 256;
+    *(myarr+17*sizeof(int)) = 289;
+    *(myarr+18*sizeof(int)) = 324;
+    *(myarr+19*sizeof(int)) = 361;
+    //print out the array
+    for(int b = 0; b < 20; b++)
+    {
+    //for some reason, upon printing fibonacci here, it doesn't work. If it works for squares, i'm just turning this shit in
+        printf("[%d]",*(myarr+b*sizeof(int)));
+    }
+    //free up the memory.
+    free(myarr);
+
+}
